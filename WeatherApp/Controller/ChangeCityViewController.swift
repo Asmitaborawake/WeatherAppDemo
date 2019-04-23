@@ -8,23 +8,31 @@
 
 import UIKit
 
-class ChangeCityViewController: UIViewController {
+//write protocol declaration here
+protocol chageCityDelegate {
+    func userEnterNewCityName(city:String)
+}
 
+class ChangeCityViewController: UIViewController {
+    
+    @IBOutlet weak var chnageCityTextField: UITextField!
+    
+    //declare delegte veriable
+    var delegate : chageCityDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func getWeatherData(_ sender: Any) {
+        let cityName = chnageCityTextField.text!
+        delegate?.userEnterNewCityName(city: cityName)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
